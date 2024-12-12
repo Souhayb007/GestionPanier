@@ -1,0 +1,22 @@
+﻿@model IEnumerable<GestionPanier.Models.ViewModel.ProductIndexVM>
+
+@{
+    ViewData["Title"] = "Catalogue";
+}
+
+<h1>Catalogue</h1>
+
+@foreach (var item in Model) {
+  <div class="card  p-4">      
+   
+        <b>@Html.DisplayFor(modelItem => item.Libelle)</b>
+
+    @Html.DisplayFor(modelItem => item.PU) DH
+    </div>
+    @if (Context.Session.GetString("Role") != null && Context.Session.GetString("Role") == "Client")
+   {
+    <div>
+        <a class="btn btn-primary" asp-action="AddToPanier" asp-controller="Product" asp-route-id="@item.Id">Ajouter Au Panier</a>
+    </div>
+   }
+}

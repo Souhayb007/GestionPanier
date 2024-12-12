@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GestionPanier.Models.ViewModel.ProductIndexVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Libelle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PU)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PU)
+            </td>
+            <td>
+                    <a asp-action="Delete" asp-controller="Prodct" asp-route-id="@item.Id">Suprimer</a>
+                    <a asp-action="Update" asp-controller="Prodct" asp-route-id="@item.Id">Modifier</a>
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
